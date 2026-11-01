@@ -1,5 +1,6 @@
 
 import sys
+import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -7,9 +8,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from main import add
 
 
-def test_add():
-    assert add(2, 3) == 5
+class TestAdd(unittest.TestCase):
+
+    def test_add(self):
+        self.assertEqual(add(2, 3), 5)
+
+    def test_add_negative(self):
+        self.assertEqual(add(-2, -3), -5)
 
 
-def test_add_negative():
-    assert add(-2, -3) == -5
+if __name__ == "__main__":
+    unittest.main()
